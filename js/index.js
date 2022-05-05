@@ -49,7 +49,7 @@ function generateProjectCard(projectName, projectDescription) {
 	iframeOutline.addEventListener("click", () => {
 		const iframe = document.createElement("iframe")
 		iframe.setAttribute("class", "project__iframe")
-		iframe.setAttribute("src", `${origin}projects/${projectName}/index.html`)
+		iframe.setAttribute("src", `projects/${projectName}/index.html`)
 		iframe.setAttribute("frameborder", "0")
 		iframe.setAttribute("allowfullscreen", "")
 		iframeOutline.replaceWith(iframe)
@@ -64,7 +64,7 @@ function generateProjectCard(projectName, projectDescription) {
 // load all projects (temporary code)
 async function loadProjects() {
 	try {
-		const result = await fetch(`${origin}projects/projects.json`)
+		const result = await fetch(`projects/projects.json`)
 		return await result?.json()
 	} catch (error) {
 		console.error("Failled to load projects")
