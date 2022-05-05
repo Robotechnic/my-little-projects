@@ -1,1 +1,110 @@
- 
+* {
+	box-sizing: border-box;
+}
+
+:root {
+	--background: #fafafa;
+	--background-darker: #f2f2f2;
+	--digit-border-radius: .1em;
+	--annimation-duration: .2s;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	width: 100vw;
+	background-color: var(--background);
+	font-family: "Fira Code",monospace;
+	padding:0;
+	border:0;
+	margin:0;
+}
+
+/* Clock */
+.clockConainer {
+	display: flex;
+	flex-direction: row;
+	gap: 10px;
+	font-size: 10vw;
+}
+
+/* Digits setup */
+.digit {
+	display: inline-flex;
+	flex-direction: column;
+	border-radius: var(--digit-border-radius);
+	position:relative;
+}
+
+.digit > *,
+.digit::before,
+.digit::after {
+	display: flex;
+	overflow: hidden;
+	flex-direction: column;
+	height: .7em;
+	padding: .2em;
+
+	line-height: 1;
+	
+	border-left: 1.5px solid lightgray;
+	border-right: 1.5px solid lightgray;
+}
+
+.digit__up, .digit::before {
+	line-height: 1;
+	background-color: var(--background-darker);
+	justify-content: flex-start;
+	border-top: 1.5px solid lightgray;
+	border-bottom: 1.5px solid gray;
+	border-top-left-radius: var(--digit-border-radius);
+	border-top-right-radius:var(--digit-border-radius);
+}
+
+.digit__down, .digit::after {
+	justify-content: flex-end;
+	background-color: var(--background);
+
+	border-bottom: 1.5px solid lightgray;
+	border-bottom-left-radius: var(--digit-border-radius);
+	border-bottom-right-radius: var(--digit-border-radius);
+}
+
+.digit.flip::before {
+	box-sizing: border-box;
+	transform-origin: bottom;
+	animation: var(--annimation-duration) ease-in 0s forwards digit-up;
+	position: absolute;
+	content: attr(data-hold-value);
+}
+
+.digit.flip::after {
+	box-sizing: border-box;
+	transform-origin: top;
+	animation: var(--annimation-duration) ease-out var(--annimation-duration) forwards digit-down;
+	position: absolute;
+	bottom: 0;
+	content: attr(data-value);
+	transform: rotateX(90deg);
+}
+
+@keyframes digit-up {
+	0% {
+		transform: rotateX(0);
+	}
+	100% {
+		transform: rotateX(90deg);
+	}
+}
+
+@keyframes digit-down {
+	0% {
+		transform: rotateX(90deg);
+	}
+	100% {
+		transform: rotateX(0deg);
+	}
+}
