@@ -1,9 +1,8 @@
-const origin = window.origin + window.location.pathname
 
 const projectContainer = document.querySelector(".projectContainer")
 
 const gitHubLogo = document.createElement("img")
-gitHubLogo.setAttribute("src", `images/gitHubLogo.svg`)
+gitHubLogo.setAttribute("src", `${window.origin}/images/gitHubLogo.svg`)
 gitHubLogo.setAttribute("class", "git-hub-logo")
 
 
