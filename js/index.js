@@ -1,3 +1,5 @@
+const origin = window.origin + window.location.pathname
+
 const projectContainer = document.querySelector(".projectContainer")
 
 const gitHubLogo = document.createElement("svg")
@@ -47,7 +49,7 @@ function generateProjectCard(projectName, projectDescription) {
 	iframeOutline.addEventListener("click", () => {
 		const iframe = document.createElement("iframe")
 		iframe.setAttribute("class", "project__iframe")
-		iframe.setAttribute("src", `${window.origin}/projects/${projectName}/index.html`)
+		iframe.setAttribute("src", `${origin}projects/${projectName}/index.html`)
 		iframe.setAttribute("frameborder", "0")
 		iframe.setAttribute("allowfullscreen", "")
 		iframeOutline.replaceWith(iframe)
@@ -62,7 +64,7 @@ function generateProjectCard(projectName, projectDescription) {
 // load all projects (temporary code)
 async function loadProjects() {
 	try {
-		const result = await fetch(`${window.origin}/projects/projects.json`)
+		const result = await fetch(`${origin}projects/projects.json`)
 		return await result?.json()
 	} catch (error) {
 		console.error("Failled to load projects")
